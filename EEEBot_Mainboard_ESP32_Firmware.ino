@@ -27,7 +27,7 @@ int16_t enc2Count = 0;
 // setting up the PWM properties used for the motors
 const int freq = 2000;
 const int ledChannela = 0;  // assumed as the channel used for the left motor
-const int ledChannelb = 1;  // assumed as the channel used for the righteft motor
+const int ledChannelb = 1;  // assumed as the channel used for the right motor
 const int resolution = 8; // 8-bit PWM signal
 
 int servoPin = 13;  //the servo is attached to IO_13 on the ESP32
