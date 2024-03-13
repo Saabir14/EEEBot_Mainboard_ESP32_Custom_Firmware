@@ -157,8 +157,7 @@ void emptyBuffer(void){
 
 // function to set the steering angle
 void setSteeringAngle(int servoAngle){
-  //
-  dutyCycle = map(servoAngle, 0, 180, 205, 410); // contrain() limits the minimum and maximum values to 0 and 180 respectively, map() proportionally scales values between 0 and 180 to values between 205 (5% duty cycle) and 410 (10% duty cycle)
+  dutyCycle = map(servoAngle, 0, 180, 205, 410); // map() proportionally scales values between 0 and 180 to values between 205 (5% duty cycle) and 410 (10% duty cycle)
   ledcWrite(servoChannel, dutyCycle); // write the control signal to the PWM
 }
 
