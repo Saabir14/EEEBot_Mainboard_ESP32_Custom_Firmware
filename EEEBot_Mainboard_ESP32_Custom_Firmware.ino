@@ -75,7 +75,7 @@ void setup() {
   Wire.onReceive(onReceive);    // receive event
   Wire.onRequest(onRequest);    // request event
   
-  Serial.begin(115200);             // start serial for the output
+  Serial.begin(9600);             // start serial for the output
   Serial.println("ESP32 Running");  // sanity check
 }
 
@@ -115,16 +115,16 @@ void onReceive(int howMany){
   }
 
   // set up variables for the three 16-bit values
-  int16_t leftMotor_speed = 0;
-  int16_t rightMotor_speed = 0;
-  int16_t servoAngle = 0;
+  static int16_t leftMotor_speed = 0;
+  static int16_t rightMotor_speed = 0;
+  static int16_t servoAngle = 0;
   
-  uint8_t leftMotor_speed16_9 = Wire.read();  // receive bits 16 to 9 of x (one byte)
-  uint8_t leftMotor_speed8_1 = Wire.read();   // receive bits 8 to 1 of x (one byte)
-  uint8_t rightMotor_speed16_9 = Wire.read(); // receive bits 16 to 9 of y (one byte)
-  uint8_t rightMotor_speed8_1 = Wire.read();  // receive bits 8 to 1 of y (one byte)
-  uint8_t servoAngle16_9 = Wire.read();       // receive bits 16 to 9 of z (one byte)
-  uint8_t servoAngle8_1 = Wire.read();        // receive bits 8 to 1 of z (one byte)
+  static uint8_t leftMotor_speed16_9 = Wire.read();  // receive bits 16 to 9 of x (one byte)
+  static uint8_t leftMotor_speed8_1 = Wire.read();   // receive bits 8 to 1 of x (one byte)
+  static uint8_t rightMotor_speed16_9 = Wire.read(); // receive bits 16 to 9 of y (one byte)
+  static uint8_t rightMotor_speed8_1 = Wire.read();  // receive bits 8 to 1 of y (one byte)
+  static uint8_t servoAngle16_9 = Wire.read();       // receive bits 16 to 9 of z (one byte)
+  static uint8_t servoAngle8_1 = Wire.read();        // receive bits 8 to 1 of z (one byte)
 
   leftMotor_speed = (leftMotor_speed16_9 << 8) | leftMotor_speed8_1;    // combine the two bytes into a 16 bit number
   rightMotor_speed = (rightMotor_speed16_9 << 8) | rightMotor_speed8_1; // combine the two bytes into a 16 bit number
