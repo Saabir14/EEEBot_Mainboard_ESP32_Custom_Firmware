@@ -30,7 +30,7 @@ const int ledChannela = 0;  // assumed as the channel used for the left motor
 const int ledChannelb = 1;  // assumed as the channel used for the right motor
 const int resolution = 8; // 8-bit PWM signal
 
-int servoPin = 13;  //the servo is attached to IO_13 on the ESP32
+const int servoPin = 13;  //the servo is attached to IO_13 on the ESP32
 
 // setting up the PWM properties of the servo
 // as an aside, the control signal of the SG90 servo is a PWM signal with a period of 20ms (50Hz) and the pulse duration has to be between 1ms to 2ms i.e. 5% duty cycle for the minimum angle of 0, and 10% duty cycle for the maximum angle of 180
