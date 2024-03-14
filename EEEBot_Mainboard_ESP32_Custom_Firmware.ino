@@ -1,7 +1,7 @@
 // ASSUMPTION: Channel A is LEFT, Channel B is RIGHT
 // read through the accompanying readme file and skeleton master code which is compatible with the firmware - only then, if you are still unsure, ask for help
 
-// Yes, I edited this code to make it work with the servo
+// Yes, I edited this code to make it work with the servo. The only edit made was removing limits sent to the servo as it was causing the servo to not move at all.
 
 #include <Wire.h>
 #include <ESP32Encoder.h>
@@ -115,16 +115,16 @@ void onReceive(int howMany){
   }
 
   // set up variables for the three 16-bit values
-  static int16_t leftMotor_speed = 0;
-  static int16_t rightMotor_speed = 0;
-  static int16_t servoAngle = 0;
+  int16_t leftMotor_speed = 0;
+  int16_t rightMotor_speed = 0;
+  int16_t servoAngle = 0;
   
-  static uint8_t leftMotor_speed16_9 = Wire.read();  // receive bits 16 to 9 of x (one byte)
-  static uint8_t leftMotor_speed8_1 = Wire.read();   // receive bits 8 to 1 of x (one byte)
-  static uint8_t rightMotor_speed16_9 = Wire.read(); // receive bits 16 to 9 of y (one byte)
-  static uint8_t rightMotor_speed8_1 = Wire.read();  // receive bits 8 to 1 of y (one byte)
-  static uint8_t servoAngle16_9 = Wire.read();       // receive bits 16 to 9 of z (one byte)
-  static uint8_t servoAngle8_1 = Wire.read();        // receive bits 8 to 1 of z (one byte)
+  const uint8_t leftMotor_speed16_9 = Wire.read();  // receive bits 16 to 9 of x (one byte)
+  const uint8_t leftMotor_speed8_1 = Wire.read();   // receive bits 8 to 1 of x (one byte)
+  const uint8_t rightMotor_speed16_9 = Wire.read(); // receive bits 16 to 9 of y (one byte)
+  const uint8_t rightMotor_speed8_1 = Wire.read();  // receive bits 8 to 1 of y (one byte)
+  const uint8_t servoAngle16_9 = Wire.read();       // receive bits 16 to 9 of z (one byte)
+  const uint8_t servoAngle8_1 = Wire.read();        // receive bits 8 to 1 of z (one byte)
 
   leftMotor_speed = (leftMotor_speed16_9 << 8) | leftMotor_speed8_1;    // combine the two bytes into a 16 bit number
   rightMotor_speed = (rightMotor_speed16_9 << 8) | rightMotor_speed8_1; // combine the two bytes into a 16 bit number
